@@ -33,28 +33,28 @@ class Product extends Equatable
 
   static List<Product> products = [
     Product(name: 'Kookaburra Bat',
-     category: 'Bat', 
+     category: 'Branded Bat', 
      imageUrl: 'https://firebasestorage.googleapis.com/v0/b/petheaven-84307.appspot.com/o/PetHeaven%2Fbat.pnge9210af7-007f-495f-bc49-650e2cb4e437?alt=media&token=2975bda0-a4b4-4bf8-bc96-97070d03207a', 
      price: 28900 , 
      isRecommended: true, 
      isPopular: false),
 
       Product(name: 'Kookaburra Bat',
-     category: 'Bat', 
+     category: 'Branded Bat', 
      imageUrl: 'https://firebasestorage.googleapis.com/v0/b/petheaven-84307.appspot.com/o/PetHeaven%2Fbat.pnge9210af7-007f-495f-bc49-650e2cb4e437?alt=media&token=2975bda0-a4b4-4bf8-bc96-97070d03207a', 
      price: 28900 , 
      isRecommended: true, 
      isPopular: false),
 
       Product(name: 'Kookaburra Bat',
-     category: 'Bat', 
+     category: 'Branded Bat', 
      imageUrl: 'https://firebasestorage.googleapis.com/v0/b/petheaven-84307.appspot.com/o/PetHeaven%2Fbat.pnge9210af7-007f-495f-bc49-650e2cb4e437?alt=media&token=2975bda0-a4b4-4bf8-bc96-97070d03207a', 
      price: 28900 , 
      isRecommended: true, 
      isPopular: false),
 
       Product(name: 'Kookaburra Bat',
-     category: 'Bat', 
+     category: 'Head Gear', 
      imageUrl: 'https://firebasestorage.googleapis.com/v0/b/petheaven-84307.appspot.com/o/PetHeaven%2Fbat.pnge9210af7-007f-495f-bc49-650e2cb4e437?alt=media&token=2975bda0-a4b4-4bf8-bc96-97070d03207a', 
      price: 28900 , 
      isRecommended: false, 
@@ -65,7 +65,21 @@ class Product extends Equatable
      imageUrl: 'https://firebasestorage.googleapis.com/v0/b/petheaven-84307.appspot.com/o/PetHeaven%2Fbat.pnge9210af7-007f-495f-bc49-650e2cb4e437?alt=media&token=2975bda0-a4b4-4bf8-bc96-97070d03207a', 
      price: 28900 , 
      isRecommended: false, 
-     isPopular: true)
+     isPopular: true),
+
+     Product(name: 'Kookaburra Bat',
+     category: 'Head Gear', 
+     imageUrl: 'https://firebasestorage.googleapis.com/v0/b/petheaven-84307.appspot.com/o/PetHeaven%2Fbat.pnge9210af7-007f-495f-bc49-650e2cb4e437?alt=media&token=2975bda0-a4b4-4bf8-bc96-97070d03207a', 
+     price: 28900 , 
+     isRecommended: false, 
+     isPopular: true),
+
+     Product(name: 'Kookaburra Bat',
+     category: 'Head Gear', 
+     imageUrl: 'https://firebasestorage.googleapis.com/v0/b/petheaven-84307.appspot.com/o/PetHeaven%2Fbat.pnge9210af7-007f-495f-bc49-650e2cb4e437?alt=media&token=2975bda0-a4b4-4bf8-bc96-97070d03207a', 
+     price: 28900 , 
+     isRecommended: false, 
+     isPopular: true),
 
   ];
 
