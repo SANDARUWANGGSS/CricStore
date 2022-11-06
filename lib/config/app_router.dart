@@ -1,4 +1,5 @@
 import 'package:cric_store/models/category_model.dart';
+import 'package:cric_store/models/models.dart';
 import 'package:cric_store/screens/cart/cart_screen.dart';
 import 'package:cric_store/screens/catalog/catalog_screen.dart';
 import 'package:cric_store/screens/home/home_screen.dart';
@@ -22,7 +23,7 @@ class AppRouter
       case CartScreen.routeName:
         return CartScreen.route();
       case ProductScreen.routeName:
-        return ProductScreen.route();
+        return ProductScreen.route(product: settings.arguments as Product);
       case CatalogScreen.routeName:
         return CatalogScreen.route(category: settings.arguments as Category);
       case WishlistScreen.routeName:

@@ -14,70 +14,75 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width/ widthFactor,
-          height: 160,
-          child: Image.network(
-            product.imageUrl,
-            fit: BoxFit.cover,
-          ),
-        ),
-        Positioned(
-          child: Container(
-            width: MediaQuery.of(context).size.width/ 2.5-10,
-            height: 80,
-            decoration: BoxDecoration(
-              color: Colors.black.withAlpha(50),
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, '/product',arguments: product,);
+      },
+      child: Stack(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width/ widthFactor,
+            height: 160,
+            child: Image.network(
+              product.imageUrl,
+              fit: BoxFit.cover,
             ),
           ),
-        ),
-        Positioned(
-          top: 70,
-          left: 5,
-          child: Container(
-            width: MediaQuery.of(context).size.width/ 2.5-10,
-            height: 55,
-            decoration: BoxDecoration(
-              color: Colors.black,
+          Positioned(
+            child: Container(
+              width: MediaQuery.of(context).size.width/ 2.5-10,
+              height: 80,
+              decoration: BoxDecoration(
+                color: Colors.black.withAlpha(50),
+              ),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(children: [
-                Expanded(
-                  flex: 3,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        product.name,
-                        style: Theme.of(context).textTheme.headline5!.copyWith(
-                          color: Colors.white,
+          ),
+          Positioned(
+            top: 80,
+            left: 5,
+            child: Container(
+              width: MediaQuery.of(context).size.width/ 2.5-10,
+              height: 60,
+              decoration: BoxDecoration(
+                color: Colors.black,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(children: [
+                  Expanded(
+                    flex: 3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          product.name,
+                          style: Theme.of(context).textTheme.headline5!.copyWith(
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      Text(
-                        '${Product.products[0].price} LKR',
-                        style: Theme.of(context).textTheme.headline5!.copyWith(
-                          color: Colors.white,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.add_circle,
-                      color: Colors.white,), 
-                    onPressed:() {},),
+                        Text(
+                          '${Product.products[0].price} LKR',
+                          style: Theme.of(context).textTheme.headline5!.copyWith(
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
                     ),
-              ]),
+                  ),
+                  Expanded(
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.add_circle,
+                        color: Colors.white,), 
+                      onPressed:() {},),
+                      ),
+                ]),
+              ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }
