@@ -4,9 +4,11 @@ import 'package:cric_store/screens/cart/cart_screen.dart';
 import 'package:cric_store/screens/catalog/catalog_screen.dart';
 import 'package:cric_store/screens/home/home_screen.dart';
 import 'package:cric_store/screens/product/product_screen.dart';
-import 'package:cric_store/screens/wishlist/wishlist.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../screens/wishlist/wishlist_screen.dart';
 
 class AppRouter
 {
