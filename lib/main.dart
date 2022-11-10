@@ -1,3 +1,4 @@
+import 'package:cric_store/blocs/cart/cart_bloc.dart';
 import 'package:cric_store/blocs/wishlist/wishlist_bloc.dart';
 import 'package:cric_store/config/app_router.dart';
 import 'package:cric_store/config/theme.dart';
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers : [
         BlocProvider(create: (_)=> WishlistBloc()..add(StartWishlist())),
+        BlocProvider(create: (_) => CartBloc()..add(CartStarted())),
       ],
       child: MaterialApp(
         title: 'Online Cricket Store',

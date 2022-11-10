@@ -1,4 +1,6 @@
+import 'package:cric_store/blocs/cart/cart_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../models/models.dart';
 
@@ -11,17 +13,21 @@ class ProductCard extends StatelessWidget {
   const ProductCard({
     Key? key,
     required this.product,
-    this.widthFactor=2.5,
-    this.leftPosition=5,
-    this.isWishlist=false,
+    this.widthFactor = 2.5,
+    this.leftPosition = 5,
+    this.isWishlist = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final double widthValue = MediaQuery.of(context).size.width/ widthFactor;
+    final double widthValue = MediaQuery.of(context).size.width / widthFactor;
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, '/product',arguments: product,);
+        Navigator.pushNamed(
+          context,
+          '/product',
+          arguments: product,
+        );
       },
       child: Stack(
         children: <Widget>[
@@ -38,7 +44,7 @@ class ProductCard extends StatelessWidget {
             top: 60,
             left: leftPosition,
             child: Container(
-              width: widthValue-5-leftPosition,
+              width: widthValue - 5 - leftPosition,
               height: 55,
               alignment: Alignment.bottomCenter,
               decoration: BoxDecoration(
@@ -48,9 +54,9 @@ class ProductCard extends StatelessWidget {
           ),
           Positioned(
             top: 65,
-            left: leftPosition+5,
+            left: leftPosition + 5,
             child: Container(
-              width: widthValue-15-leftPosition,
+              width: widthValue - 15 - leftPosition,
               height: 70,
               decoration: BoxDecoration(
                 color: Colors.black,
@@ -66,34 +72,64 @@ class ProductCard extends StatelessWidget {
                       children: [
                         Text(
                           product.name,
-                          style: Theme.of(context).textTheme.headline5!.copyWith(
-                            color: Colors.white,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.headline5!.copyWith(
+                                    color: Colors.white,
+                                  ),
                         ),
                         Text(
                           '${Product.products[0].price} LKR',
-                          style: Theme.of(context).textTheme.headline5!.copyWith(
-                            color: Colors.white,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.headline5!.copyWith(
+                                    color: Colors.white,
+                                  ),
                         )
                       ],
                     ),
                   ),
-                  Expanded(
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.add_circle,
-                        color: Colors.white,), 
-                      onPressed:() {},),
-                      ),
-                      isWishlist ? 
-                      Expanded(
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.delete,
-                        color: Colors.white,), 
-                      onPressed:() {},),
-                      ) :SizedBox(),
+                  BlocBuilder<CartBloc, CartState>(
+                    builder: (context, state) {
+                      if(state is CartLoading)
+                      {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+
+                       
+                      }
+                      if(state is CartLoaded)
+                      {
+                        return Expanded(
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.add_circle,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            context
+                                .read<CartBloc>()
+                                .add(CartProductAdded(product));
+                          },
+                        ),
+                      );
+                      }
+                      else
+                      {
+                        return Text('Something went wrong');
+                      }
+                    },
+                  ),
+                  isWishlist
+                      ? Expanded(
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {},
+                          ),
+                        )
+                      : SizedBox(),
                 ]),
               ),
             ),
@@ -103,4 +139,3 @@ class ProductCard extends StatelessWidget {
     );
   }
 }
-

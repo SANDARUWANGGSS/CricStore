@@ -1,12 +1,13 @@
-
+import 'package:cric_store/blocs/cart/cart_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../models/models.dart';
 
 class CartProductCard extends StatelessWidget {
   final Product product;
-  
+
   const CartProductCard({
-    Key? key, 
+    Key? key,
     required this.product,
   }) : super(key: key);
 
@@ -14,33 +15,57 @@ class CartProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
-      child: Row(children: [
-        Image.network(product.imageUrl,
-        width: 100,
-        height: 80,
-        fit: BoxFit.cover,
-        ),
-        SizedBox(width: 10),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-            Text(product.name, 
-            style: Theme.of(context).textTheme.headline6,),
-            Text('{product.price} LKR'),
-          ],),
-        ),
+      child: Row(
+        children: [
+          Image.network(
+            product.imageUrl,
+            width: 100,
+            height: 80,
+            fit: BoxFit.cover,
+          ),
           SizedBox(width: 10),
-          Row(children: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.remove_circle),),
-            Text(
-              '1',
-              style: Theme.of(context).textTheme.headline5,
-              ),
-            
-            IconButton(onPressed: () {}, icon: Icon(Icons.add_circle),),
-          ],)
-      ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  product.name,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                Text('{product.price} LKR'),
+              ],
+            ),
+          ),
+          SizedBox(width: 10),
+          BlocBuilder<CartBloc, CartState>(
+            builder: (context, state) {
+              return Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      context
+                      .read<CartBloc>()
+                      .add(CartProductRemoved(product));
+                    },
+                    icon: Icon(Icons.remove_circle),
+                  ),
+                  Text(
+                    '1',
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      context
+                      .read<CartBloc>()
+                      .add(CartProductAdded(product));
+                    },
+                    icon: Icon(Icons.add_circle),
+                  ),
+                ],
+              );
+            },
+          )
+        ],
       ),
     );
   }

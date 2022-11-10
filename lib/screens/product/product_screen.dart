@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cric_store/blocs/cart/cart_bloc.dart';
 import 'package:cric_store/blocs/wishlist/wishlist_bloc.dart';
 import 'package:cric_store/models/models.dart';
 import 'package:cric_store/widgets/widgets.dart';
@@ -46,21 +47,30 @@ class ProductScreen extends StatelessWidget {
                         ),
                         onPressed: () {
                           context
-                          .read<WishlistBloc>()
-                          .add(AddWishlistProduct(product));
+                              .read<WishlistBloc>()
+                              .add(AddWishlistProduct(product));
 
-                          final snackBar = 
-                          SnackBar(content: Text('Added to Your Wishlist!'));
+                          final snackBar = SnackBar(
+                              content: Text('Added to Your Wishlist!'));
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         },
                       );
                     },
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(primary: Colors.white),
-                    onPressed: () {},
-                    child: Text('Add To Cart',
-                        style: Theme.of(context).textTheme.headline3!),
+                  BlocBuilder<CartBloc, CartState>(
+                    builder: (context, state) {
+                      return ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: Colors.white),
+                        onPressed: () {
+                          context
+                            .read<CartBloc>()
+                            .add(CartProductAdded(product));
+                            Navigator.pushNamed(context, '/cart');
+                        },
+                        child: Text('Add To Cart',
+                            style: Theme.of(context).textTheme.headline3!),
+                      );
+                    },
                   )
                 ]),
           ),
