@@ -4,6 +4,7 @@ import 'package:cric_store/screens/cart/cart_screen.dart';
 import 'package:cric_store/screens/catalog/catalog_screen.dart';
 import 'package:cric_store/screens/home/home_screen.dart';
 import 'package:cric_store/screens/product/product_screen.dart';
+import 'package:cric_store/screens/splash/splash_screen.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,8 @@ class AppRouter
         return HomeScreen.route();
       case CartScreen.routeName:
         return CartScreen.route();
+      case SplashScreen.routeName:
+        return SplashScreen.route();
       case ProductScreen.routeName:
         return ProductScreen.route(product: settings.arguments as Product);
       case CatalogScreen.routeName:

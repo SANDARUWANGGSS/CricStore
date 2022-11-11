@@ -37,12 +37,7 @@ class CartScreen extends StatelessWidget {
         ),
         body: BlocBuilder<CartBloc, CartState>(
           builder: (context, state) {
-            if(state is CartLoading)
-            {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
+            
             if(state is CartLoaded)
             {
               return Padding(
@@ -168,6 +163,13 @@ class CartScreen extends StatelessWidget {
           ],
         ),
       );
+            }
+            if(state is CartLoading)
+            {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+              // return Text('Sandaruwan');
             }
             else
             {
