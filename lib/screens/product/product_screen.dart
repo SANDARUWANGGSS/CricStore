@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cric_store/blocs/cart/cart_bloc.dart';
 import 'package:cric_store/blocs/wishlist/wishlist_bloc.dart';
 import 'package:cric_store/models/models.dart';
 import 'package:cric_store/widgets/widgets.dart';
@@ -38,39 +37,59 @@ class ProductScreen extends StatelessWidget {
                     ),
                     onPressed: () {},
                   ),
-                  BlocBuilder<WishlistBloc, WishlistState>(
+                  // BlocBuilder<WishlistBloc, WishlistState>(
+                  //   builder: (context, state) {
+                  //     return IconButton(
+                  //       icon: Icon(
+                  //         Icons.favorite,
+                  //         color: Colors.white,
+                  //       ),
+                  //       onPressed: () {
+                  //         context
+                  //         .read<WishlistBloc>()
+                  //         .add(AddProductToWishlist(product));
+
+                  //         final snackBar = 
+                  //         SnackBar(content: Text('Added to Your Wishlist!'));
+                  //         ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  //       },
+                  //     );
+                  //   },
+                  // ),
+                   BlocBuilder<WishlistBloc, WishlistState>(
                     builder: (context, state) {
-                      return IconButton(
+                      if(state is WishlistLoading)
+                      {
+                        return CircularProgressIndicator();
+                      }
+                      if(state is WishlistLoaded)
+                      {
+                        return IconButton(
                         icon: Icon(
                           Icons.favorite,
                           color: Colors.white,
                         ),
                         onPressed: () {
                           context
-                              .read<WishlistBloc>()
-                              .add(AddWishlistProduct(product));
+                          .read<WishlistBloc>()
+                          .add(AddProductToWishlist(product));
 
-                          final snackBar = SnackBar(
-                              content: Text('Added to Your Wishlist!'));
+                          final snackBar = 
+                          SnackBar(content: Text('Added to Your Wishlist!'));
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         },
                       );
+                      }
+                      else{
+                        return Text('Something Went Wrong!');
+                      }
                     },
                   ),
-                  BlocBuilder<CartBloc, CartState>(
-                    builder: (context, state) {
-                      return ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary: Colors.white),
-                        onPressed: () {
-                          context
-                            .read<CartBloc>()
-                            .add(CartProductAdded(product));
-                            Navigator.pushNamed(context, '/cart');
-                        },
-                        child: Text('Add To Cart',
-                            style: Theme.of(context).textTheme.headline3!),
-                      );
-                    },
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(primary: Colors.white),
+                    onPressed: () {},
+                    child: Text('Add To Cart',
+                        style: Theme.of(context).textTheme.headline3!),
                   )
                 ]),
           ),

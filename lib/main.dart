@@ -1,5 +1,4 @@
-import 'package:cric_store/blocs/cart/cart_bloc.dart';
-import 'package:cric_store/blocs/wishlist/wishlist_bloc.dart';
+import '/blocs/blocs.dart';
 import 'package:cric_store/config/app_router.dart';
 import 'package:cric_store/config/theme.dart';
 import 'package:cric_store/screens/screens.dart';
@@ -15,8 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers : [
-        BlocProvider(create: (_)=> WishlistBloc()..add(StartWishlist())),
-        BlocProvider(create: (_) => CartBloc()..add(CartStarted())),
+        BlocProvider(create: (_)=> WishlistBloc()..add(LoadWishlist())),
+        // BlocProvider(create: (_) => CartBloc()..add(LoadCart())),
       ],
       child: MaterialApp(
         title: 'Online Cricket Store',
