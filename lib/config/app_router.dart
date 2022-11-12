@@ -3,6 +3,7 @@ import 'package:cric_store/models/models.dart';
 import 'package:cric_store/screens/cart/cart_screen.dart';
 import 'package:cric_store/screens/catalog/catalog_screen.dart';
 import 'package:cric_store/screens/home/home_screen.dart';
+import 'package:cric_store/screens/login/login_screen.dart';
 import 'package:cric_store/screens/product/product_screen.dart';
 import 'package:cric_store/screens/splash/splash_screen.dart';
 
@@ -27,6 +28,8 @@ class AppRouter
         return CartScreen.route();
       case SplashScreen.routeName:
         return SplashScreen.route();
+      case LoginScreen.routeName:
+        return LoginScreen.route();
       case ProductScreen.routeName:
         return ProductScreen.route(product: settings.arguments as Product);
       case CatalogScreen.routeName:
